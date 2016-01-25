@@ -1,0 +1,25 @@
+public class Replacement {
+    public String replaceSpace(String iniString, int length) {
+        // write code here
+        if(iniString==null||length<=0)
+            return null;        
+        int spaceNum=0;
+        for(int i=0;i<length;i++){
+            if(iniString.charAt(i)==' ')
+                spaceNum++;
+        }
+        int newlength=length+2*spaceNum;
+        char[]array=iniString.toCharArray();
+        for(int j=length-1,k=newlength-1;j>=0&&k>j;){
+            if(array[j]==' '){
+                array[k--]='0';
+                array[k--]='2';
+                array[k--]='%';     
+            }else{
+                 array[k--]=array[j];        
+            }
+            j--;
+        }
+        return new String(array);
+    }
+}

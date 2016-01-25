@@ -1,0 +1,24 @@
+public class Clearer {
+    public int[][] clearZero(int[][] mat) {
+        // write code here
+        if(mat==null)
+            return mat;
+        boolean[] column=new boolean[mat.length]; 
+        boolean[] row=new boolean[mat[0].length];
+        for(int i=0;i<column;i++){
+            for(int j=0;j<row;j++)
+                if(mat[i][j]==0){
+                column[i]=true;
+                row[j]=true;
+            }
+        }
+        for(int i=0;i<column;i++){
+            for(int j=0;j<row;j++)
+                if(colunm[i]||row[j]){
+                mat[i][j]=0;
+                
+            }
+        }
+        return mat;
+    }
+}

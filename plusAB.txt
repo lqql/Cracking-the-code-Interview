@@ -1,0 +1,46 @@
+public class Plus {
+    public ListNode plusAB(ListNode a, ListNode b) {
+        // write code here
+        if(a==null)
+            return b;
+        if(b==null)
+            return a;
+        int reserve=0;       
+        ListNode result=null;
+        ListNode res=null;
+        int sum=a.val+b.val+reserve;
+        res=new ListNode(sum%10);
+        reserve=sum/10;
+        result=res;
+        a=a.next;
+        b=b.next;
+        while(a!=null&&b!=null){
+            sum=a.val+b.val+reserve;
+            ListNode node=new ListNode(sum%10);
+            reserve=sum/10;
+            res.next=node;
+            res=node;
+            a=a.next;
+            b=b.next;
+        }
+        while(a!=null){
+            sum=a.val+reserve;
+            ListNode node=new ListNode(sum%10);
+            reserve=sum/10;
+            res.next=node;
+            res=node;
+            a=a.next;
+        }while(b!=null){
+            sum=b.val+reserve;
+            ListNode node=new ListNode(sum%10);
+            reserve=sum/10;
+            res.next=node;
+            res=node;
+            b=b.next;
+        }
+        if(reserve==1){            
+            res.next=new ListNode(1);
+        }
+        return result;
+    }
+}

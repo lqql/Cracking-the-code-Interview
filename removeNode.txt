@@ -1,0 +1,17 @@
+public class Remove {
+    public boolean removeNode(ListNode pNode) {
+        // write code here
+        if(pNode==null||pNode.next==null)
+            return false;
+        else if(pNode.next.next==null){
+            pNode.val=pNode.next.val;
+            pNode.next=null;
+        }
+        else{
+            pNode.val=pNode.next.val;
+            pNode.next=pNode.next.next;
+        }
+        return true;
+        
+    }
+}

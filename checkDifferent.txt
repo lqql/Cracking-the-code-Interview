@@ -1,0 +1,17 @@
+public class Different {
+    public boolean checkDifferent(String iniString) {
+        // write code here
+        if(iniString==null||iniString.length()<=0)
+            return false;
+        char[] array=iniString.toCharArray();
+        Arrays.sort(array);
+        int i;
+        for(i=1;i<iniString.length();i++){
+            if(array[i]==array[i-1])
+                return false;
+        }
+        if(i==iniString.length())
+            return true;
+        return false;
+    }
+}

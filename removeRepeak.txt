@@ -1,0 +1,21 @@
+public class RemoveRepeat {
+    public ListNode removeRepeatNode(ListNode head) {
+        // write code here
+        if(head==null)
+            return null;
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        ListNode cur=head;
+        ListNode pre=null;
+        while(cur!=null&&cur.next!=null){
+            if(map.contains(cur.val)){
+                pre.next=cur.next;
+            }else {
+                map.add(cur.val,1);
+                pre=cur;
+            }
+            cur=cur.next;                     
+        }
+        return head;
+        
+    }
+}

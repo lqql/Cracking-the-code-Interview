@@ -1,0 +1,14 @@
+public class Same {
+    public boolean checkSam(String stringA, String stringB) {
+        // write code here
+        if(stringA==null||stringB==null||stringA.length()==0||stringB.length()==0)
+            return false;
+        char[] a=stringA.toCharArray();
+        char[] b=stringB.toCharArray();
+        Arrays.sort(a);
+        Arrays.sort(b);
+        String str1 = new String(a);
+        String str2 = new String(b);
+        return str1.equals(str2);
+	}
+}

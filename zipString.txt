@@ -1,0 +1,41 @@
+public class Zipper {
+    public String zipString(String iniString) {
+        // write code here\
+        if(iniString==null||iniString.length()==0)
+            return null;
+        int size=countCompress(iniString);
+        if(size>=iniString.length())
+            return iniString;
+        StringBuffer stringbuffer=new StringBuffer();
+        char last=iniString.charAt(0);
+        int count=1;
+        for(int i=1;i<iniString.length();i++){
+            if(iniString.charAt(i)==last)
+                count++;
+            else{
+                stringbuffer.append(last);
+                stringbuffer.append(count);
+                last=iniString.charAt(i);
+                count=1;
+            }
+            
+        }
+        stringbuffer.append(last);
+        stringbuffer.append(count);
+        return stringbuffer.toString();        
+    }
+    int countCompress(String str){
+        if(str==null||str.length()==0)
+            return 0;
+        char last = str.charAt(0);
+        int count =1;
+        int size=0;
+        for(int i=1;i<str.length();i++){
+            if(str.charAt(i)!=last){
+                size+=2;
+                last=str.charAt(i);
+            }
+        }
+        return size+2;
+    }
+}

@@ -1,0 +1,25 @@
+public class Palindrome {
+    public boolean isPalindrome(ListNode pHead) {
+        // write code here
+        if(pHead==null||pHead.next==null)
+            return false;
+        ListNode slow=pHead;
+        ListNode fast=pHead;
+        Stack<ListNode> stack = new Stack<ListNode>();     
+        while(fast!=null&&fast.next!=null){
+            stack.push(slow);
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        //链表有奇数元素时跳过中间元素
+        if(fast!=null){
+            slow=slow.next;
+        }
+        while(slow!=null){
+            if(stack.pop().val!=slow.val)
+                return false;
+            slow=slow.next;
+        }
+        return true;
+    }
+}
