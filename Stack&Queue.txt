@@ -1,0 +1,38 @@
+//Stack
+public class Stack<T>{
+    private ArrayList<T> list;
+    public Stack<T>(){
+        list=new ArrayList<T>();
+    }
+    public void push(T data){
+        list.add(data);
+    }
+    public T pop(){
+        if(list.isEmpty())
+            return null;
+        return list.remove(list.size()-1);
+    }
+    public T peek(){
+        if(list.isEmpty())
+            return null;
+        return list.get(list.size()-1);
+    }
+    public boolean empty(){
+        return list.isEmpty();
+    }
+}
+//Queue
+public class Queue<T>{
+    private LinkedList<T> list;
+    public Queue<T>(){
+        list=new LinkedList<T>;
+    }
+    public void enqueue(T data){
+        list.add(data);
+    }
+    public T dequeue(){
+        if(list.isEmpty())
+            return null;
+        return list.removeLast();
+    }
+}

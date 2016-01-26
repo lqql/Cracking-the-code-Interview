@@ -1,0 +1,35 @@
+public class Arrayto3Stacks {
+    private int stackSize;
+    private int[]buffer;
+    private int[] stackPoint;
+    public Arrayto3Stacks(int n){
+        stackSize=n;
+        buffer=new int[3*n];
+        stackPoint=[-1,-1,-1];//×·×ÙÕ»¶¥ÔªËØµÄÖ¸Õë
+    }
+    public void push(int val,int stackNum){
+        if(stackPonit[stackNum]+1>=stackSize)
+            reutrn -1;
+        stackPoint[stackNum]++;
+        buffer[bufferNum(stackPoint[stackNum])]=val;
+        stackPoint[stackNum]++;
+    }
+    public int pop(int stackNum){
+        if(stackPoint[stackNum]==-1)
+            return Integer.MAX_VALUE;
+        int val=buffer[bufferNum(stackPoint[stackNum])];
+        buffer[bufferNum(stackPoint[stackNum])]=0;
+        stackPoint[stackNum]--;
+        return val;        
+    }
+    public int peek(int stackNum){
+        return buffer[bufferNum(stackPoint[stackNum])];
+    }
+    public boolean isEmpty(int stackNum){
+        return stackPoint[stackNum]==-1;
+    }
+    public int bufferNum(int stackNum){
+        return stackPoint[stackNum]+stackNum*stackSize;
+    }
+    
+}
