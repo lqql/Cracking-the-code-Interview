@@ -1,0 +1,27 @@
+public class MinimalBST {
+    public int buildMinimalBST(int[] vals) {
+        // write code here
+        if(vals==null||vals.length<=0)
+            return 0;
+        TreeNode node= buildMinimalBST(vals,0,vals.length-1);
+        return getHeight(node);            
+    }
+    public  TreeNode buildMinimalBST(int[] vals,int start,int end){
+        if(start>end){
+            return null;
+        }
+        int mid = (start+end)/2;
+        TreeNode root = new TreeNode(vals[mid]);
+        int left,right;
+        root.left=buildMinimalBST(vals,start,mid-1);
+        root.right=buildMinimalBST(vals,mid+1,end);
+        return root;
+    }
+    public int getHeight(TreeNode root){
+        if(root == null)
+            return 0;
+        int left = getHeight(root.left);
+        int right = getHeight(root.right);
+        return Math.max(left, right) + 1;
+    }
+}

@@ -1,0 +1,24 @@
+public TreeNode findSucc(TreeNode node) {
+        // write code here
+        if(node==null)
+            return null;
+        if(node.right!=null)
+            return getLeft(rodt.rigth);
+        else{
+            TreeNode p=node;
+            TreeNode x=p.parent;
+            while(x!=null&&x.right!=p){
+                p=x;
+                x=p.parent;
+            }
+            return x;
+        }            
+    }
+    TreeNode getLeft(TreeNode node){
+        if(node==null)
+            return null;
+        while(node.left!=null){
+            node=node.left;
+        }
+        return node;
+    }

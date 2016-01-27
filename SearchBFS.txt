@@ -1,0 +1,18 @@
+public SearchBFS(Node root){
+    if(root==null)
+        return null;
+    Queue<Node> queue=new LinkedList<Node>();
+    visit(root);
+    root.visit=true;
+    queue.offer(root);
+    while(!queue.empty()){
+        Node node = queue.poll();
+        foreach(Node n in node.adjance){
+            if(n.visit==false){
+                visit(n);
+                n.visit=true;
+                queue.offer(n);
+            }
+        }
+    }
+}

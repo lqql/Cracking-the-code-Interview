@@ -1,0 +1,15 @@
+ public boolean findPath(TreeNode root,TreeNode node,ArrayList<TreeNode> list){
+        if(root.val==node.val){
+            return true;
+        }
+        list.add(root);
+        boolean findpath=false;
+        if(root.left!=null)
+             findpath=findPath(root.left,node,list);
+        if(!findpath&&root.right!=null)
+            findPath=findPath(root.right,node,list);
+        if(!findPath)
+            list.remove(list.size()-1);
+        return findPath;
+        
+    }

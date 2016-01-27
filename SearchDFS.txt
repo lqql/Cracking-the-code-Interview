@@ -1,0 +1,12 @@
+public class searchDFS{
+	public void SearchDFS(Node root){
+		if(root == null)
+			return null;
+		visit(root);
+		root.visit=true;
+		foreach(Node n in root.adjance){
+			if(n.visit==false)
+				SearchDFS(root);
+		}
+	}
+}

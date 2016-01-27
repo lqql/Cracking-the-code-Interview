@@ -1,0 +1,40 @@
+/*
+public class UndirectedGraphNode {
+    int label = 0;
+    UndirectedGraphNode left = null;
+    UndirectedGraphNode right = null;
+    ArrayList<UndirectedGraphNode> neighbors = new ArrayList<UndirectedGraphNode>();
+
+    public UndirectedGraphNode(int label) {
+        this.label = label;
+    }
+}*/
+public class Path {
+    public boolean checkPath(UndirectedGraphNode a, UndirectedGraphNode b) {
+        // write code here
+        if(null == a || null == b)
+            return false;
+        return findPath(a,b) || findPath(b, a);
+
+    }
+    boolean findPath(UndirectedGraphNode a, UndirectedGraphNode b){
+        LinkedList<UndirectedGraphNode> q=new LinkedList<UndirectedGraphNode>();
+        HashSet<UndirectedGraphNode> set= new HashSet<UndirectedGraphNode>();
+        q.addLast(a);
+        set.add(a);
+        while(!q.isEmpty()){
+            UndirectedGraphNode cur = q.removeFirst();
+            if(cur == b)
+                return true;
+            else {
+                for(UndirectedGraphNode node :cur.neighbors){
+                	if(!set.contains(node)){
+                    	q.addLast(node);
+                    	set.add(node);
+                	}
+            	}
+            }
+        }
+        return false;
+    }
+}

@@ -1,0 +1,31 @@
+// 利用中序遍历，如果遍历的结果是有序数组则是二叉查找树，但无法解决有重复元素的情况。
+public class Checker {
+    private int last=Integer.MIN_VALUE;
+    public boolean checkBST(TreeNode root) {
+        // write code here
+        if(root==null)
+            return true;
+        if(!checkBST(root.left))
+            return false;
+        if(root.val<=last)
+            return false;
+        last=root.val;
+        if(!checkBST(root.right))
+            return false;
+        return true;
+	}
+}
+//利用搜索二叉树的性质，左子树限制在一个范围，右子树限制在一个范围
+public boolean checkBST(TreeNode root) {
+        // write code here
+       return checkBST(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+	}
+    boolean checkBST(TreeNode root, int min,int max){
+        if(root==null)
+            return true;
+        if(root.val>max||root.val<min)
+            return false;
+        if(!checkBST(root.left,min,root.val)||!checkBST(root.right,root.val,max))
+            return false;
+        return true;
+    }

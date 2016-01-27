@@ -1,0 +1,30 @@
+public class TreeLevel {
+    public ListNode getTreeLevel(TreeNode root, int dep) {
+        // write code here
+        ArrayList<LinkedList<TreeNode>> result = new ArrayList<LinkedList<TreeNode>>();
+        LinkedList<TreeNode> current = new LinkedList<TreeNode>();
+        if(root!=null)
+            current.add(root);
+        while(!current.isEmpty()){
+            result.add(current);
+            LinkedList<TreeNode> parents = current;
+            current=new LinkedList<TreeNode>();
+            for(TreeNode parent:parents){
+                if(parent.left!=null)
+                    current.add(parent.left);
+                if(parent.right!=null)
+                    current.add(parent.right);
+            }   
+        }
+        LinkedList<TreeNode> cur=result.get(dep-1);
+        ListNode head = new ListNode(cur.getFirst().val);
+    	cur.remove(0);
+    	ListNode node = head;
+    	for(TreeNode n1:cur){
+        	ListNode next = new ListNode(n1.val);
+        	node.next = next;
+        	node = next;
+    	}
+        return head;
+    }
+}
