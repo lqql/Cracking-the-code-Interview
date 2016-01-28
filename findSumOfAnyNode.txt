@@ -1,0 +1,33 @@
+private ArrayList<ArrayList<Integer>>lists=new ArrayList<ArrayList<Integer>>();
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
+        int depth=getDepth(root);
+        int[] path = new int[depth];
+        findPath(root,target,path,0);
+        return lists;
+    }
+    void findPath(TreeNode node,int target,int[] path,int level){
+        if(node==null)
+            return;
+        path[level]=node.val;
+        int sum=0;
+        for(int i=level;i>=0;i--){
+            sum+=path[i];
+            if(sum==target){
+                getList(path,i,level);
+            }
+        }
+        findPath(node.left,target,path,level+1);
+        findPath(node.right,target,path,level+1);
+     }
+    void getList(int[] path,int start,int end){
+        ArrayList<Integer> list= new ArrayList<Integer>();
+        for(int i=start;i<=end;i++){
+            list.add(path[i]);
+        }
+        lists.add(list);
+    }
+    int getDepth(TreeNode node){
+        if(node==null)
+            return 0;
+        return 1+Math.max(getDepth(node.left),getDepth(node.right));
+    }

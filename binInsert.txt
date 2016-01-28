@@ -1,0 +1,10 @@
+public int binInsert(int n, int m, int j, int i) {
+        // write code here
+        int bitNum=~0;
+        int left=bitNum<<(i+1);
+        int right=(bitNum<<j)-1;
+        int mask=left|right;
+        int n_cleard=n&mask;
+        int m_shift = m << j;
+        return n_cleard|m_shift;
+    }

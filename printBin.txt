@@ -1,0 +1,22 @@
+public String printBin(double num) {
+        // write code here
+        if(num>=1||num<=0)
+            return "Error";
+        StringBuilder builder = new StringBuilder();
+        double frac=0.5;
+        builder.append(0);
+        builder.append('.');
+        while(num!=0){
+            if(builder.length()>32)
+                return "Error";
+            if(num>=frac){
+                builder.append(1);
+                num=num-frac;
+            }
+            
+            else
+                builder.append(0);
+            frac=frac/2;
+        }
+        return builder.toString();
+    }
