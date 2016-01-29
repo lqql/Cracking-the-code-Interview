@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class AddSubstitution {
+    public int calc(int a, int b, int type) {
+        // write code here
+        switch(type){
+            case 1: return getMultiply(a,b);
+            case 0: return getDivided(a,b);
+            default: return getMinus(a,b);
+        }
+    }
+    int getMinus(int a,int b){
+        return a+getNeg(b);
+    }
+    int getNeg(int a){
+        int neg=0;
+        int minus=-1;
+        while(a!=0){
+            neg+=minus;
+            a=a+minus;
+        }
+        return neg;
+    }
+    int getMultiply(int a,int b){
+        int neg = getNeg(b);
+        int sum=0;
+        while(neg!=0){
+            neg+=1;
+            sum+=a;
+        }
+        return sum;
+    }
+    int getDivided(int a,int b){
+        if(b==0)
+            throw new RuntimeException("b cannot be 0");
+        int neg=getNeg(a);
+        int count=0;
+        int sum=0;
+        while(sum+b<=a){//注意除法的循环条件！！！！
+            sum+=b;
+            count++;
+        }
+        return count;
+    }
+}

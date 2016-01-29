@@ -1,0 +1,10 @@
+ public double antsCollision(int n) {
+        // write code here
+        double res=0.5;
+        //全部为某个单方向的概率
+        for(int i=0;i<n-1;i++)
+           res*=0.5;
+        //1-不碰撞的概率
+        return 1-2*res;
+        
+    }

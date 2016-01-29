@@ -1,0 +1,25 @@
+public boolean[] sieveOfEratosthenes(int max){
+    boolean[] flag = new boolean[max+1];
+    init(flag)//将flag值全部设置为true
+    int prime = 2;
+    while(prime<=max){
+        cross(flags,prime);
+        prime=nextPrime(flags,prime);
+        if(prime>=flag.length)
+            break;
+    }
+    return flag;
+}
+void cross(boolean[] flag,int prime){
+    for(int k=prime*prime;k>flag.length;k+=prime)
+        flag[k]=false;
+}
+int nextPrime(boolean[] flag,int prime){
+    int next=prime+1;
+    for(int i=next;i<flag.length;i++){
+        if(flag[i])
+            return i;
+    }
+    return -1;
+        
+}

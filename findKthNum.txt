@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class KthNumber {
+    public int findKth(int k) {
+        // write code here
+        if(k<=0)
+            return 0;
+        int multiply3=0;
+        int multiply5=0;
+        int multiply7=0;
+        int[] num = new int[k+1];
+        num[0]=1;
+        int next=1;
+        while(next<=k){
+            int min=min(num[multiply3]*3,num[multiply5]*5,num[multiply7]*7);
+            num[next++]=min;
+            if(min==num[multiply3]*3)
+                multiply3++;
+            if(min==num[multiply5]*5)
+                multiply5++;
+            if(min==num[multiply7]*7)
+                multiply7++;
+        }
+        return num[k];
+    }
+    int min(int a,int b,int c){
+        	int m = a < b ? a : b;
+        	return m < c ? m : c;
+ 
+    }
+}
