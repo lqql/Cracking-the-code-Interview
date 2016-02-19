@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class MagicIndex1 {
+    public boolean findMagicIndex(int[] A, int n) {
+        // write code here
+        return findMagic(A,0,n-1);
+    }
+    boolean findMagic(int[] a,int start,int end){
+        if(a==null||start>end)
+            return false;
+        while(start<=end){
+            int mid=(start+end)/2;
+            if(a[mid]==mid)
+                return true;
+            else if(a[mid]<mid){
+                start=mid+1;
+            }else
+                end=mid-1;
+        }
+        return false;
+            
+    }
+}

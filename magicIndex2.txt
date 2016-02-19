@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class MagicIndex {
+    public boolean findMagicIndex(int[] A, int n) {
+        // write code here
+        return findMagic(A,0,n-1);
+    }
+    boolean findMagic(int[]a,int start,int end){
+        if(a==null||start>end)
+            return false;
+        int mid=(start+end)/2;
+        int midVal=a[mid];
+        if(midVal==mid)
+            return true;
+        boolean res=false;
+        int leftIndex=Math.min(midVal,mid-1);
+        res=findMagic(a,start,leftIndex);
+        if(!res){
+            int rightIndex=Math.max(midVal,mid+1);
+            res=findMagic(a,rightIndex,end);
+        }
+        return res;
+        
+    }
+}

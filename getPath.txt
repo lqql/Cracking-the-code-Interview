@@ -1,0 +1,35 @@
+public boolean getPath(int x, int y, ArrayList<Point> path){//包含重复路径
+        Point p = new Point(x,y);
+        path.add(p);
+        if(x==0&&y==0)
+            return true;
+        boolean success = false;
+        if(x>=1&&isFree(x-1,y)){
+            success = getPath(x-1,y,path);
+        }
+        if(!success&&y>=1&&isFree(x,y-1)){
+            success = getPath(x,y-1,path);
+        }
+        if(!success)
+            path.remove(p);
+        return success;
+    }
+    public boolean getPath(int x, int y, ArrayList<Point> path,Hashtable<Point,boolean> cache){//不包含重复路径
+        Point p = new Point(x,y);
+        if(cache.contains(p))
+            return cache.get(p);
+        path.add(p);
+        if(x==0&&y==0)
+            return true;
+        boolean success = false;
+        if(x>=1&&isFree(x-1,y)){
+            success = getPath(x-1,y,path);
+        }
+        if(!success&&y>=1&&isFree(x,y-1)){
+            success = getPath(x,y-1,path);
+        }
+        if(!success)
+            path.remove(p);
+        cache.put(p,success);
+        return success;
+    }
