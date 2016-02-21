@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Finder {
+    public int findElement(int[] A, int n, int x) {
+        // write code here
+        if(A==null||n==0)
+            return -1;
+        return find(A,0,n-1,x);
+    }
+    int find(int[]a,int left,int right,int target){
+        if(left>right)
+            return -1;
+        int mid=(left+right)/2;
+        if(a[mid]==target)
+            return mid;
+        if(a[mid]>a[left]){
+            if(a[mid]>=target&&target>=a[left])
+                return find(a,left,mid-1,target);
+            else
+                return find(a,mid+1,right,target);
+        }
+        else if(a[mid]<a[left]){
+            if(a[mid]<=target&&target<=a[right])
+                return find(a,mid+1,right,target);
+            else
+                return find(a,left,mid-1,target);
+        }
+        else if(a[mid]==a[left]){
+            if(a[mid]!=a[right])
+                return find(a,mid+1,right,target);
+            else{
+                int result=find(a,left,mid-1,target);
+                if(result==-1)
+                    result=find(a,mid+1,right,target);
+                else
+                    return result;
+            }
+                
+        }
+       return -1;
+     }
+}

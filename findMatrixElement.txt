@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class Finder {
+    public int[] findElement(int[][] mat, int n, int m, int x) {
+        // write code here
+        if(mat==null||n==0||m==0)
+            return new int[2];
+        int[] res = new int[2];
+        int row=0,colums=m-1;
+        while(row<=n&&colums>=0){
+            if(mat[row][colums]==x){
+                res[0]=row;
+                res[1]=colums;
+                return res;
+            }
+            else if(mat[row][colums]>x)
+                colums--;
+            else
+                row++;        
+        }
+        return res;
+    }
+}

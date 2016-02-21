@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Finder {
+    public int findString(String[] str, int n, String x) {
+        // write code here
+        if(str==null||n==0||x=="")
+            return -1;
+        return searchString(str,0,n-1,x);
+    }
+    int searchString(String[] a,int begin,int end,String target){
+        if(begin>end)
+            return -1;
+        int mid=(begin+end)/2;
+        if(a[mid].isEmpty()){
+            int left=mid-1;
+            int right=mid+1;
+            while(true){
+                if(left<begin||right>end)
+                    return -1;
+                if(left>=begin&&!(a[left].isEmpty())){
+                    mid=left;
+                    break;
+                }
+                if(right<=end&&!(a[right].isEmpty())){
+                    mid=right;
+                    break;
+                }
+                left--;
+                right++;
+            }
+        }
+        if(a[mid].equals(target))
+            return mid;
+        else if(a[mid].compareTo(target)>0)
+            return searchString(a,begin,mid-1,target);
+        else
+            return searchString(a,mid+1,end,target);
+    }
+}

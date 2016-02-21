@@ -1,0 +1,15 @@
+public class AnagramComparator implements Comparator<String>{
+    public int compare(String str1,String str2){
+        sorChars(str1).compareTo(sortChars(str2));
+    }
+    public String sortChars(String str){
+        char[] chars=str.toCharArray();
+        Arrays.sort(str);
+        return new String(chars);
+    }
+      
+}
+public ArrayList<String> sortStrings(String[] str, int n){
+    // write code here
+    Arrays.sort(str,new AnagramComparator());
+}  

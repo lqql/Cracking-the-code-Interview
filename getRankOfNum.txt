@@ -1,0 +1,54 @@
+import java.util.*;
+
+public class Rank {
+    Node root=null;
+    public int[] getRankOfNumber(int[] A, int n) {
+        // write code here
+        int[] res = new int[n];
+        if(A==null||n==0)
+            return null;
+        for(int i=0;i<n;i++){
+            res[i]=helper(A[i]);
+        }
+        return res;
+    }
+    int helper(int data){
+        if(root==null)
+            root=new Node(data);
+        else
+            root.insert(data);
+        return root.getRank(data);
+    }
+    class Node{
+        int value;
+        int leftsize;
+        Node left,right;
+        public Node(int value){
+            this.value=value;
+        }
+        public void insert(int data){
+            Node node = new Node(data);
+            if(data<=value){
+                if(left!=null)
+                    left.insert(data);
+                else
+                    left=node;
+                leftsize++;
+            }
+            else {
+                if(right!=null)
+                    right.insert(data);
+                else
+                    right=node;
+            }  
+        }
+        public int getRank(int data){
+            if(data==value)
+                return leftsize;
+            else if(data<value)
+                return left.getRank(data);
+            else
+                return leftsize+1+right.getRank(data);
+        }
+    }
+}
