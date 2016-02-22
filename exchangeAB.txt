@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Exchange1 {//位操作，更通用
+    public int[] exchangeAB(int[] AB) {
+        // write code here
+        if(AB==null||AB.length==0||AB.length==1)
+            return AB;
+        AB[0]=AB[0]^AB[1];
+        AB[1]=AB[0]^AB[1];
+        AB[0]=AB[0]^AB[1];
+        return AB;
+    }
+}
+import java.util.*;
+
+public class Exchange2 {//算数操作，仅拥有整数
+    public int[] exchangeAB(int[] AB) {
+        // write code here
+        if(AB==null||AB.length==0||AB.length==1)
+            return AB;
+        AB[0]=AB[0]-AB[1];
+        AB[1]=AB[0]+AB[1];
+        AB[0]=AB[1]-AB[0];
+        return AB;
+    }
+}

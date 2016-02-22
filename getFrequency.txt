@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Frequency {
+    public int getFrequency(String[] article, int n, String word) {
+        // write code here
+        if(article==null||n==0||word==null)
+            return 0;
+        HashMap<String,Integer> map=getMap(article);
+        if(map.containsKey(word.toLowerCase()))
+            return map.get(word.toLowerCase());
+        else return 0;
+        
+    }
+    HashMap<String,Integer> getMap(String[] article){
+        HashMap<String,Integer> map=new HashMap<String,Integer>();
+        for(String str:article){
+            String s=str.toLowerCase();
+            if(map.containsKey(s))
+                map.put(s,map.get(s)+1);
+            else
+                map.put(s,1);
+        }
+        return map;
+    }
+    
+}

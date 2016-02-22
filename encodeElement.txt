@@ -1,0 +1,30 @@
+void encode(Element e,StringBuffer sb){
+        if(e==null)
+            return null;
+        encode(e.getNameCode(),sb);
+        for(Atrribute a:e.getAtrribute()){
+            encode(a,sb);
+        }
+        encode("0",sb);
+        if(e.getValue()!=null||e.getValue()!="")
+            encode(e.getValue(),sb);
+        else{
+            for(Element child:e.getChild()){
+                encode(child,sb);
+            }
+        }
+        encode("0",sb);
+    }
+    void encode(Attribute a,StringBuffer sb){
+        encode(a.getTag(),sb);
+        encode(a.getValue(),sb);
+    }
+    void encode(String str,StringBuffer sb){
+        sb.append(str);
+        sb.appent(" ");
+    }
+    void String encode(Element e){
+        StringBuffer sb=new StringBuffer();
+        encode(e,sb);
+        return sb.toString();
+    }

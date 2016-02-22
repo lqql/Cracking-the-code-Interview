@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Factor {
+    public int getFactorSuffixZero(int n) {
+        // write code here
+        if(n<5)
+            return 0;
+        int count=0;
+        for(int i=5;i<=n;i++){
+            count+=factorsOf5(i);
+        }
+        return count;
+    }
+    int factorsOf5(int i){
+        int count=0;
+        while(i%5==0){
+            count++;
+            i=i/5;
+        }
+        return count;
+    }
+}

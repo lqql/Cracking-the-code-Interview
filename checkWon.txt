@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class Board {
+    public boolean checkWon(int[][] board) {
+        // write code here
+        int rows=board.length;
+        int colums=board[0].length;
+        int i=0,j=0;
+        if(board==null||rows<=2||colums!=rows)
+            return false;
+        //检查行
+        for(i=0;i<colums;i++){
+            for(j=0;j<colums;j++){
+                if(board[i][j]!=1)
+                    break;   
+            }
+            if(j==colums)
+                return true;
+        }
+        //检查列
+        for(i=0;i<colums;i++){
+            for(j=0;j<colums;j++){
+                if(board[j][i]!=1)
+                    break;
+            }
+            if(j==colums)
+                return true;
+        }
+        //检查主对角线
+        for(i=0;i<colums;i++){
+            if(board[i][i]!=1)
+                break;
+        }
+        if(i==colums)
+            return true;
+        //检查次对角线
+        for(i=0;i<colums;i++){
+            if(board[colums-1-i][i]!=1)
+                break;
+        }
+        if(i==colums)
+            return true;
+        return false;
+    }
+}

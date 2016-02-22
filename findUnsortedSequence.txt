@@ -1,0 +1,53 @@
+import java.util.*;
+
+public class Rearrange {
+    public int[] findSegment(int[] A, int n) {
+        // write code here
+        int[] res=new int[2];
+        if(A==null||n==0)
+            return null;
+        int left=getLeft(A);
+        int right=getRight(A);
+        int min=left+1;
+        if(min>=A.length)
+            return res;
+        int max=right-1;
+        for(int i=left;i<=right;i++){
+            if(A[i]>A[max])
+                max=i;
+            if(A[i]<A[min])
+                min=i;
+        }
+        res[0]=shrinkLeft(A,min,left);
+        res[1]=shrinkRight(A,max,right);
+        return res;
+    }
+    int getLeft(int[] a){
+        for(int i=1;i<a.length;i++){
+            if(a[i]<a[i-1])
+                return i-1;
+        }
+        return a.length-1;
+    }
+    int getRight(int[] a){
+        for(int i=a.length-1;i>0;i--){
+            if(a[i]<a[i-1])
+                return i-1;
+        }
+        return 0;
+    }
+    int shrinkLeft(int[]a,int min,int start){
+        for(int i=start-1;i>=0;i--){
+            if(a[i]<=a[min])
+                return i+1;
+        }
+        return 0;
+    }
+    int shrinkRight(int[]a,int max,int end){
+        for(int i=end+1;i<a.length;i++){
+            if(a[max]<=a[i])
+                return i-1;
+        }
+        return a.length-1;
+    }
+}

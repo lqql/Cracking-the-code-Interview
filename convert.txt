@@ -1,0 +1,33 @@
+public class Converter {
+    ListNode pre=new ListNode(0);
+    ListNode head=pre;
+    public ListNode treeToList(TreeNode root) {
+        // write code here
+        if(root==null)
+            return null;
+        treeToList(root.left);
+        pre.next=new ListNode(root.val);
+        pre=pre.next;
+        treeToList(root.right);
+        return head.next;
+    }
+}
+//双向链表
+public TreeNode treeToList(TreeNode root){
+        if(root==null)
+            return null;
+        TreeNode left=treeToList(root.left);
+        TreeNode right=treeToList(root.right);
+        if (left!=null) contact(getTail(left),root);
+        if(right!=null) contact(root,right);
+        return left==null?root:left;
+    }
+    TreeNode getTail(TreeNode root){
+        while(root.right!=null)
+            root=root.right;
+        return root
+    }
+    void contact(TreeNode node1,TreeNode node2){
+        node1.right=node2;
+        node2.left=node1;
+    }

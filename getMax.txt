@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Max {
+    public int getMax(int a, int b) {
+        // write code here
+        int signa=sign(a);
+        int signb=sign(b);
+        int signc=sign(a-b);
+        // 若ab符号不同
+        int use_sign_of_a=signa^signb;
+        int use_sign_of_c=flip(signa^signb);
+        int k=use_sign_of_a*signa+use_sign_of_c*signc;
+        int p=flip(k);
+        return a*k+b*p;
+    }
+    int flip(int k){
+        return k^1;
+    }
+    int sign(int num){//若为正则返回1，若为负则返回0；
+        return flip((num>>31)&0x1);
+    }
+}

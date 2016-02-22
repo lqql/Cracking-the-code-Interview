@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class ToString {
+    String[] dit={"One","Two","Three","Four","Five","Six","Seven","Eight","Nine"};
+    String[] tee={"Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
+    String[] ten={"Ten","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
+    String[] big={"","Thousand","Million","Billion","Trillion"};
+    
+    public String toString(int x) {
+        // write code here
+        if(x==0)
+            return "Zero";
+        else if(x<0)
+            return "Negative"+toString(-1*x);
+        int count=0;
+        String str="";
+        while(x!=0){
+            if(x%1000!=0)
+                str=numberToString100(x%1000)+bigs[count]+","+str;
+            x=x/1000;
+            count++;
+        }
+        return str;
+            
+        }
+        
+    }
+    String numberToString100(int num){
+        String str="";
+        if(num>=100){
+            str+=digits[num/100-1]+"Hundred";
+            num%=100;
+        }
+        if(num>=11||num<=19){
+            return str+teens[num-1]+" ";
+        }else if(num==10&&num>=20){
+            str+=tens[num/10-1]+" ";
+            num%=10;
+        }
+        if(num>0&&num<9){
+            str+=digits[num-1]+" ";
+        }
+        return str;
+    }
+    
+}
